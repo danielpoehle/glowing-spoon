@@ -1,25 +1,47 @@
 <head>
-  <title>glowing-spoon</title>
+  <meta charset="UTF-8">
+  <title>Productivity Manager Glowing Spoon</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  <nav class="nav-extended">
+    <div class="nav-wrapper">
+      &nbsp;&nbsp;
+      <a href="#" class="brand-logo">
+        <i class="large material-icons">schedule</i>
+        Glowing Spoon
+        <i class="large material-icons right">assignment_turned_in</i>
+      </a>
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <a class="waves-effect waves-light btn">
+            Button
+            <i class="material-icons right">cloud</i>
+          </a>
+        </li>
+        <li class="nav-item">
+          {{> loginButtons align="right"}}
+        </li>
+        <li class="nav-item">
+          <a href="#"><i class="material-icons">person_outline</i></a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent">
+        <li class="tab"><a class="active" href="#tasks_today">Today's tasks</a></li>
+        <li class="tab"><a href="#manage_tasks">Manage Tasks</a></li>
+        <li class="tab"><a href="#manage_capacity">Manage Capacity</a></li>
+      </ul>
+    </div>
+  </nav>
 
+  
   {{> hello}}
-  {{> info}}
 </body>
 
 <template name="hello">
   <button>Click Me</button>
   <p>You've pressed the button {{counter}} times.</p>
-</template>
-
-<template name="info">
-  <h2>Learn Meteor!</h2>
-  <ul>
-    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
-    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
-    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
-    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
-  </ul>
 </template>
