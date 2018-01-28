@@ -14,7 +14,7 @@
         <i class="large material-icons right">assignment_turned_in</i>
       </a>
       <ul class="right hide-on-med-and-down">
-        <li class="nav-item">
+        <li id="login" class="nav-item">
           {{> loginButtons align="right"}}
         </li>
         <li class="nav-item">
@@ -25,9 +25,9 @@
     <div class="row">
       <div class="nav-content">
         <ul class="tabs tabs-transparent tabs-fixed-width">
-          <li class="tab"><a class="active black-text" href="#tasks_today">Today's tasks</a></li>
-          <li class="tab"><a class="black-text" href="#manage_tasks">Manage Tasks</a></li>
-          <li class="tab"><a class="black-text" href="#manage_capacity">Manage Capacity</a></li>
+          <li id="nt1" class="tab"><a class="active black-text" href="#tasks_today">Today's tasks</a></li>
+          <li id="nt2" class="tab"><a class="black-text" href="#manage_tasks">Manage Tasks</a></li>
+          <li id="nt3" class="tab"><a class="black-text" href="#manage_capacity">Manage Capacity</a></li>
         </ul>
       </div>
     </div>
@@ -35,26 +35,42 @@
 
   <div class="container">
     {{#if currentUser}}
-    <div id="tasks_today" class="col s12">
-      <h4>Today's tasks - 28.01.2018</h4>
-      {{> hello}}
-    </div>
-
-    <div id="manage_tasks" class="col s12">
-      <h4>Manage tasks</h4>
-    </div>
-
-    <div id="manage_capacity" class="col s12">
-      <h4>Manage capacity</h4>
-    </div>
+      {{> display}}
     {{else}}
-    <h1>Please log in to edit your tasks!</h1>
+      <h1>Please log in to edit your tasks!</h1>
     {{/if}}
   </div>
 
 </body>
 
-<template name="hello">
-  <a class="waves-effect waves-light btn">Click me</a>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="display">
+  {{#if activeTab 'nt1'}}
+        {{> taskview}}
+    {{/if}}
+
+    {{#if activeTab 'nt2'}}
+        {{> taskmanager}}
+    {{/if}}
+
+    {{#if activeTab 'nt3'}}
+        {{> capacitymanager}}
+    {{/if}}
+</template>
+
+<template name="taskview">
+  <h4>
+    Today's tasks
+    <a id="rem1day" href="#"><i class="material-icons">chevron_left</i></a>
+    {{counter}}
+    <a id="add1day" href="#"><i class="material-icons">chevron_right</i></a>
+  </h4>
+  - beautiful table will appear here -
+</template>
+
+<template name="taskmanager">
+  <h4>Manage tasks</h4>
+</template>
+
+<template name="capacitymanager">
+  <h4>Manage capacity</h4>
 </template>

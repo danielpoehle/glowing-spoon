@@ -1,22 +1,49 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
+import { Session } from 'meteor/session';
 
 import './main.html';
 
-Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
+activeTab = new ReactiveVar('nt1'); //Your default tab
+todayTimetamp = new ReactiveVar(new Date());
+
+Template.body.onCreated(function bodyOnCreated() {
+  Meteor.subscribe('tasks');
+  Meteor.subscribe('capacity');
 });
 
-Template.hello.helpers({
+Template.body.events({
+  "click #nt1": function(){
+     activeTab.set('nt1');
+  },
+  "click #nt2": function(){
+     activeTab.set('nt2');
+  },
+  "click #nt3": function(){
+     activeTab.set('nt3');
+  }
+});
+
+Template.display.helpers({
+    activeTab: function(tab){
+        return (activeTab.get() == tab);
+      },
+});
+
+Template.taskview.onCreated(function helloOnCreated() {
+  // counter starts at 0
+  //this.timestamp = new Date();
+});
+
+Template.taskview.helpers({
   counter() {
-    return Template.instance().counter.get();
+    return todayTimetamp.get().toLocaleDateString();
   },
 });
 
-Template.hello.events({
-  'click .btn'(event, instance) {
+Template.taskview.events({
+  'click #rem1day'() {
     // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
+    todayTimetamp.set(todayTimetamp.get() - 1);
   },
 });
