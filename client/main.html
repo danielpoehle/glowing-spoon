@@ -28,20 +28,32 @@
         </li>
       </ul>
     </div>
-    <div class="nav-content">
-      <ul class="tabs tabs-transparent">
-        <li class="tab"><a class="active" href="#tasks_today">Today's tasks</a></li>
-        <li class="tab"><a href="#manage_tasks">Manage Tasks</a></li>
-        <li class="tab"><a href="#manage_capacity">Manage Capacity</a></li>
-      </ul>
+    <div class="row">
+      <div class="nav-content">
+        <ul class="tabs tabs-transparent tabs-fixed-width">
+          <li class="tab"><a class="active" href="#tasks_today">Today's tasks</a></li>
+          <li class="tab"><a href="#manage_tasks">Manage Tasks</a></li>
+          <li class="tab"><a href="#manage_capacity">Manage Capacity</a></li>
+        </ul>
+      </div>
     </div>
   </nav>
 
-  
-  {{> hello}}
+
+  <div id="tasks_today" class="col s12">
+    <p>Test 1</p>
+    {{> hello}}
+  </div>
+  <div id="manage_tasks" class="col s12">Test 2</div>
+  <div id="manage_capacity" class="col s12">Test 3</div>
+
+
+
+
+
 </body>
 
 <template name="hello">
-  <button>Click Me</button>
+  <a class="waves-effect waves-light btn">Click me</a>
   <p>You've pressed the button {{counter}} times.</p>
 </template>
