@@ -31,25 +31,28 @@
     <div class="row">
       <div class="nav-content">
         <ul class="tabs tabs-transparent tabs-fixed-width">
-          <li class="tab"><a class="active" href="#tasks_today">Today's tasks</a></li>
-          <li class="tab"><a href="#manage_tasks">Manage Tasks</a></li>
-          <li class="tab"><a href="#manage_capacity">Manage Capacity</a></li>
+          <li class="tab"><a class="active black-text" href="#tasks_today">Today's tasks</a></li>
+          <li class="tab"><a class="black-text" href="#manage_tasks">Manage Tasks</a></li>
+          <li class="tab"><a class="black-text" href="#manage_capacity">Manage Capacity</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
+  <div class="container">
+    <div id="tasks_today" class="col s12">
+      <h4>Today's tasks - 28.01.2018</h4>
+      {{> hello}}
+    </div>
 
-  <div id="tasks_today" class="col s12">
-    <p>Test 1</p>
-    {{> hello}}
+    <div id="manage_tasks" class="col s12">
+      <h4>Manage tasks</h4>
+    </div>
+
+    <div id="manage_capacity" class="col s12">
+      <h4>Manage capacity</h4>
+    </div>
   </div>
-  <div id="manage_tasks" class="col s12">Test 2</div>
-  <div id="manage_capacity" class="col s12">Test 3</div>
-
-
-
-
 
 </body>
 
