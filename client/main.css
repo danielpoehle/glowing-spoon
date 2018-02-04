@@ -5197,7 +5197,7 @@ input[type=range] + .thumb {
   input[type=range] + .thumb.active {
     border-radius: 50% 50% 50% 0; }
     input[type=range] + .thumb.active .value {
-      color: #fff;
+      color: white;
       margin-left: -1px;
       margin-top: 8px;
       font-size: 10px; }
@@ -5206,8 +5206,8 @@ input[type=range] {
   -webkit-appearance: none; }
 
 input[type=range]::-webkit-slider-runnable-track {
-  height: 3px;
-  background: #c2c0c2;
+  height: 1px;
+  background: black;
   border: none; }
 
 input[type=range]::-webkit-slider-thumb {
@@ -5222,11 +5222,11 @@ input[type=range]::-webkit-slider-thumb {
   transition: .3s; }
 
 input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #ccc; }
+  background: black; }
 
 input[type=range] {
   /* fix for FF unable to apply focus style bug  */
-  border: 1px solid white;
+  border: 1px solid transparent;
   /*required for proper track sizing in FF*/ }
 
 input[type=range]::-moz-range-track {
