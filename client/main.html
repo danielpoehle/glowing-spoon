@@ -2,9 +2,15 @@
   <meta charset="UTF-8">
   <title>Productivity Manager Glowing Spoon</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 
 <body>
+  <script>
+         $(document).ready(function() {
+            $('select').material_select();
+         });
+  </script>
   <nav class="nav-extended">
     <div class="nav-wrapper">
       &nbsp;&nbsp;
@@ -41,6 +47,8 @@
     {{/if}}
   </div>
 
+
+
 </body>
 
 <template name="display">
@@ -61,7 +69,7 @@
   <h4>
     Today's tasks
     <a id="rem1day" href="#"><i class="material-icons">chevron_left</i></a>
-    {{counter}}
+    {{selectedDate}}
     <a id="add1day" href="#"><i class="material-icons">chevron_right</i></a>
   </h4>
   - beautiful table will appear here -
@@ -69,6 +77,49 @@
 
 <template name="taskmanager">
   <h4>Manage tasks</h4>
+
+  <div class="row">
+        <div class="col s12 m11">
+          <div class="card large $primary-color">
+            <div class="card-content">
+              <span class="card-title">Create a new task</span>
+                <p>
+                  <div class="input-field col s9">
+                    <input id="title" type="text" class="black-text">
+                    <label for="title">Title</label>
+                  </div>
+                  <div class="input-field col s3">
+                    <input type="range" id="estimate" min="0" max="8" step="0.5">
+                  </div>
+                  <div class="input-field col s6">
+                    <input id="dueDate" type="text" class="">
+                    <label for="dueDate">Due Date</label>
+                  </div>
+                  <div class="input-field col s6">
+                    <input id="dueTime" type="text" class="">
+                    <label for="dueTime">Due Time</label>
+                  </div>
+                  <div class="input-field col s12">
+                    <textarea id="description" class="materialize-textarea"></textarea>
+                    <label for="description">Description</label>
+                  </div>
+                </p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+
+      </div>
+    </form>
+  </div>
 </template>
 
 <template name="capacitymanager">

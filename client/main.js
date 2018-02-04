@@ -36,7 +36,7 @@ Template.taskview.onCreated(function helloOnCreated() {
 });
 
 Template.taskview.helpers({
-  counter() {
+  selectedDate() {
     return todayTimetamp.get().toLocaleDateString();
   },
 });
@@ -44,6 +44,14 @@ Template.taskview.helpers({
 Template.taskview.events({
   'click #rem1day'() {
     // increment the counter when button is clicked
-    todayTimetamp.set(todayTimetamp.get() - 1);
+    var d = new Date(todayTimetamp.get());
+    d.setDate(d.getDate() - 1)
+    todayTimetamp.set(d);
+  },
+  'click #add1day'() {
+    // increment the counter when button is clicked
+    var d = new Date(todayTimetamp.get());
+    d.setDate(d.getDate() + 1)
+    todayTimetamp.set(d);
   },
 });
