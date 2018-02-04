@@ -55,3 +55,12 @@ Template.taskview.events({
     todayTimetamp.set(d);
   },
 });
+
+Template.taskmanager.helpers({
+  today() {
+    var d = new Date();
+    var s = d.getFullYear().toString().concat("-",('0'+(d.getMonth()+1)).slice(-2),
+            "-", ('0'+d.getDate()).slice(-2));
+    return s;
+  },
+});
