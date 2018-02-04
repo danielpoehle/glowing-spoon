@@ -1,15 +1,24 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Session } from 'meteor/session';
+import { Tasks } from '../lib/collections.js';
+import { Accounts } from 'meteor/accounts-base';
 
 import './main.html';
 
 activeTab = new ReactiveVar('nt1'); //Your default tab
 todayTimetamp = new ReactiveVar(new Date());
+estimateValue = new ReactiveVar(0.5);
 
 Template.body.onCreated(function bodyOnCreated() {
   Meteor.subscribe('tasks');
-  Meteor.subscribe('capacity');
+});
+
+Template.body.helpers({
+  tasks(){
+    n = Tasks.find({});
+    return n;
+  }
 });
 
 Template.body.events({
@@ -30,10 +39,6 @@ Template.display.helpers({
       },
 });
 
-Template.taskview.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  //this.timestamp = new Date();
-});
 
 Template.taskview.helpers({
   selectedDate() {
@@ -56,6 +61,13 @@ Template.taskview.events({
   },
 });
 
+
+Template.body.onCreated(function bodyOnCreated() {
+  Meteor.subscribe('tasks');
+});
+
+
+
 Template.taskmanager.helpers({
   today() {
     var d = new Date();
@@ -63,4 +75,51 @@ Template.taskmanager.helpers({
             "-", ('0'+d.getDate()).slice(-2));
     return s;
   },
+  estimateValue(){
+    return estimateValue.get();
+  },
+  tasks() {
+    Tasks.find({});
+  }
+});
+
+Template.taskmanager.events({
+  "mouseover #estimate": function (event, template) {
+
+    const target = event.target;
+    const textValue = target.value;
+
+    estimateValue.set(textValue);
+  },
+  "click #estimate": function (event, template) {
+
+    const target = event.target;
+    const textValue = target.value;
+
+    estimateValue.set(textValue);
+  },
+  'submit .add-task': function(event, template) {
+    event.preventDefault();
+    const target = event.target;
+
+    const description = target.description.value;
+    const dueDate = target.dueDate.value;
+    const dueTime = target.dueTime.value;
+    const title = target.title.value;
+    const estimatedEffort = Number(target.estimate.value);
+    //console.log(description + " " + dueDate + " " + dueTime + " " + title + " "+ estimatedEffort);
+
+
+    //Insert Note into collection
+    Meteor.call('tasks.insert', description, dueDate, dueTime, title, estimatedEffort);
+
+    //Clear the form
+    target.description.value = "";
+    var d = new Date();
+    target.dueDate.value = d.getFullYear().toString().concat("-",('0'+(d.getMonth()+1)).slice(-2),
+            "-", ('0'+d.getDate()).slice(-2));
+    target.dueTime.value = "17:00";
+    target.title.value = "";
+    estimateValue.set(0.5);
+  }
 });
